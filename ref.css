@@ -1,8 +1,19 @@
-.form-inline {
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
+$namespace: pam;
 
+/// @author Frank Dip
+/// Pixel Art
+/// TODO: Look for ways to refactor
+/// @version 1.2
+
+ /********************************************//**
+  * Animation
+  ***********************************************/
+
+/**
+ * reticle
+ * Creates an animation of inset box-shadow and outline.
+ * Makes it easier to spot things.
+ */
 @keyframes reticle {
   0% {
     box-shadow: inset 0px 0px 2px 2px rgba(240,12,12,1);
@@ -20,6 +31,16 @@
   }
 }
 
+/////////////////////////////////////////////////
+/// Placeholder Classes
+/////////////////////////////////////////////////
+
+// %reticle
+%reticle {animation: 3s infinite alternate reticle;}
+
+%cursor---pointer {cursor: pointer;}
+
+%padding---zero {padding: 0;}
 
 /********************************************//**
  *  HTML Elements

@@ -1,28 +1,73 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 <head>
-    <title>Pixel Art Maker!</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
-    <link rel="stylesheet" href="styles.css">
+    <meta charset="utf-8">
+    <title>Pixel Art Maker</title>
+    <meta name="description" content="Pixel Art Maker.">
+    <meta name="author" content="Ryan Tang">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="styles.css" rel="stylesheet">
+    <script defer="" src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 </head>
 <body>
-    <h1>Welcome To Pixel</h1>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="navbar-brand">Pixel Art Maker</div>
+      <div>
+          <ul class="navbar-nav mr-auto">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">File</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" id="pam-save-png" href="#"><i class="fas fa-download"></i> Save PNG</a><a class="dropdown-item" id="pam-save-jpeg" href="#"><i class="fas fa-download"></i> Save JPEG</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" data-toggle="modal" data-target="#pam-delete--confirmation"><i class="fas fa-trash-alt"></i> Delete</a>
+                    </div>
+                </li>
 
-    <h2>Choose Grid Size</h2>
-    <form id="sizePicker">
-        Grid Height:
-        <input type="number" id="inputHeight" name="height" min="1" value="1">
-        Grid Width:
-        <input type="number" id="inputWeight" name="width" min="1" value="1">
-        <input type="submit">
-    </form>
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Border</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" id="pam-border--default" href="#"><i class="fas fa-table"></i> Default</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" id="pam-border--less" href="#"><i class="far fa-square"></i> Borderless</a>
+                    <div class="dropdown-divider"></div>
+                    <input class="form-control mr-sm-2" id="pam-border--color" type="color" value="#4DB6AC" data-toggle="tooltip" title="Border color">
+                    </div>
+                </li>
 
-    <h2>Pick A Color</h2>
-    <input type="color" id="colorPicker">
+                <li class="nav-item dropdown"><a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Help</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown"><a class="dropdown-item" href="#" data-toggle="modal" data-target="#pam-help--view"><i class="fas fa-question-circle"></i> View Help</a>
+                    <div class="dropdown-divider"></div><a class="dropdown-item" href="#" data-toggle="modal" data-target="#pam-help--about"><i class="fas fa-info-circle"></i> About</a></div>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <h2>Design Canvas</h2>
-    <table id="pixelCanvas"></table>
+    <div>
+        <nav>
+            <ul class="nav nav-tabs justify-content-center">
+              <li class="nav-item" data-toggle="tooltip" title="Paint brush color">
+                <div class="nav-link"><input class="form-control mr-sm-2" id="pam-color-picker" type="color" value="#ff0000"></div>
+              </li>
+              <li class="nav-item" data-toggle="tooltip" title="Paint brush"><a class="nav-link active" id="pam-tool--paint" href="#"><i class="fas fa-paint-brush fa-2x"></i></a></li>
+              <li class="nav-item" data-toggle="tooltip" title="Dipper"><a class="nav-link" id="pam-tool--dipper" href="#"><i class="fas fa-eye-dropper fa-2x"></i></a></li>
+              <li class="nav-item" data-toggle="tooltip" title="Eraser"><a class="nav-link" id="pam-tool--eraser" href="#"><i class="fas fa-eraser fa-2x"></i></a></li>
+            </ul>
+        </nav>
 
-    <script src="designs.js"></script>
+    </div>
+    
+    <main>
+        <div>
+            <form class="form-inline justify-content-center" id="pam-size-picker">
+              <label class="mb-2 mr-sm-2 pam-label" for="pam-size-picker--width">Width:</label>
+              <input class="form-control mb-2 mr-sm-2" id="pam-size-picker--width" type="number" min="1" max="40" value="20" required="required">
+              <label class="mb-2 mr-sm-2 pam-label" for="pam-size-picker--height">Height:</label>
+              <input class="form-control mb-2 mr-sm-2" id="pam-size-picker--height" type="number" min="1" max="48" value="20" required="required">
+              <div class="form-check mb-2 mr-sm-2"><a class="btn btn-primary" data-toggle="modal" data-target="#pam-size-picker--modal"><i class="fas fa-table"></i> Submit</a></div>
+            </form>
+        </div>
+        <table id="pam-table"></table>
+    </main>
+
+
+<!-- Script -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+<script src="designs.js"></script>
 </body>
-</html>
