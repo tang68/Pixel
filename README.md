@@ -1,3 +1,9 @@
 # Pixel Art Maker Project
 
-![hey](screenshots/tree.png?raw=true "Title")
+![Tree](screenshots/tree.png?raw=true "Tree")
+
+
+![help](screenshots/help.png?raw=true "Help")
+
+
+
