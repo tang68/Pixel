@@ -1,3 +1,5 @@
+$namespace: pam;
+
 .form-inline {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -20,10 +22,19 @@
   }
 }
 
+input[type="color"] {
+  opacity: 100;
+  display: block;
+  width: 64px;
+  height: 40px;
+  border: solid;
+  padding-bottom: -10px
+}
 
-/********************************************//**
- *  HTML Elements
- ***********************************************/
+#pam-size-picker {
+  padding-top: 15px;
+  padding-top: 15px;
+}
 
 body {padding-top: 90px;}
 
@@ -45,32 +56,4 @@ td {
   &:hover {@extend %reticle;}
 }
 
-/********************************************//**
- *  ID
- ***********************************************/
 
-##{$namespace} {
-  &-border--color {
-    @extend %padding---zero;
-    @extend %cursor---pointer;
-  }
-  &-color-picker {
-    @extend %padding---zero;
-    @extend %cursor---pointer;
-    width: 40px;
-    height: 35px;
-  }
-}
-
-/********************************************//**
- *  Classes
- ***********************************************/
-
-.#{$namespace} {
-  &-label {@extend %cursor---pointer;}
-  
-  &-main {
-    margin: 1em auto;
-    &--size-picker {margin-bottom: 1em;}
-  }
-}
