@@ -1,3 +1,3 @@
 # Pixel Art Maker Project
 
-![hey](Users/ryanphattang/WebDevtree.png?raw=true "Title")
+![hey](screenshots/tree.png?raw=true "Title")
